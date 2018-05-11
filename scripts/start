@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -e
+
+echo "-------------------------------------------"
+echo " Override with application start up script "
+echo "-------------------------------------------"
+
+# keep container running
+while sleep 1
+do
+  echo -n
+done

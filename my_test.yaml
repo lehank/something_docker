@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: my_loadtest
+spec:
+  parallelism: 1
+  template:
+    metadata:
+      name: my_loadtest
+    spec:
+      containers:
+      - name: vegeta
+        image: oba11/vegeta
+        command: ["sh", "-c", "vegeta attack -rate 100 -targets /testurls/my_tests.vegeta -duration=30m | tee my_test-results.bin | vegeta report"]
+        resources:
+          requests:
+            cpu: 500m
+            memory: 200Mi
+        volumeMounts:
+        - mountPath: /testurls
+          name: testurls
+      volumes:
+      - name: testurls
+        configMap:
+          name: my_test-data
+      restartPolicy: Never

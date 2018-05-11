@@ -1,0 +1,10 @@
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: my_test-data
+data:
+  my_tests.vegeta: |-
+    GET http://sports.yahoo.com
+    GET http://news.yahoo.com
+    GET http://mail.yahoo.com
